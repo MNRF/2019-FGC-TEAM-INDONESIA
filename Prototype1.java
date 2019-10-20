@@ -37,9 +37,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Prototype2", group="1")
+@TeleOp(name="Prototype1", group="1")
 
-public class Prototype2 extends LinearOpMode {
+public class Prototype1 extends LinearOpMode {
 
 
     // Declare OpMode members.
@@ -86,16 +86,11 @@ public class Prototype2 extends LinearOpMode {
 
         // Setup a variable
 
-        double leftPower1;
-        double rightPower1;
-        double midPower1;
-        double drive1;
-        double turn1;
-        double leftPower2;
-        double rightPower2;
-        double midPower2;
-        double drive2;
-        double turn2;
+        double leftPower;
+        double rightPower;
+        double midPower;
+        double drive;
+        double turn;
 
 
         // Wait for the game to start (driver presses PLAY)
@@ -109,41 +104,16 @@ public class Prototype2 extends LinearOpMode {
         while (opModeIsActive()) {
 
 
-            //Switch Driver//
-
-            if(gamepad1.start == true)
-            {
-                changeDriver = false;
-            }else if(gamepad2.start == true)
-            {
-                changeDriver = true;
-            }
-
-
             //Drive//
 
-            if(changeDriver == false)
-            {
-                drive1 = -gamepad1.left_stick_y;
-                turn1  =  gamepad1.left_stick_x;
-                leftPower1    = Range.clip(drive1 + turn1, -speed, speed) ;
-                rightPower1   = Range.clip(drive1 - turn1, -speed, speed) ;
-                midPower1     = gamepad1.right_stick_x;
-                leftDrive.setPower(leftPower1);
-                rightDrive.setPower(rightPower1);
-                midDrive.setPower(midPower1);
-            }else if(changeDriver == true)
-            {
-                drive2 =  gamepad2.left_stick_y;
-                turn2  = -gamepad2.left_stick_x;
-                leftPower2    = Range.clip(drive2 - turn2, -speed, speed) ;
-                rightPower2   = Range.clip(drive2 + turn2, -speed, speed) ;
-                midPower2     = -gamepad2.right_stick_x;
-                leftDrive.setPower(leftPower2);
-                rightDrive.setPower(rightPower2);
-                midDrive.setPower(midPower2);
-            }
-
+                drive = -gamepad1.left_stick_y;
+                turn  =  gamepad1.left_stick_x;
+                leftPower    = Range.clip(drive + turn, -1, 1) ;
+                rightPower   = Range.clip(drive - turn, -1, 1) ;
+                midPower     = gamepad1.right_stick_x;
+                leftDrive.setPower(leftPower);
+                rightDrive.setPower(rightPower);
+                midDrive.setPower(midPower);
 
             //Micro Intake//
 
